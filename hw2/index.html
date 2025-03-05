@@ -54,7 +54,11 @@
 		<h2>Section I: Bezier Curves and Surfaces</h2>
 
 		<h3>Part 1: Bezier curves with 1D de Casteljau subdivision</h3>
-		For each pair control points and using parameter t (for time), perform linear interpolation (lerp) to create another point between them. If you do this with all pairs of points, if you have n points, then you should have n-1 points after the first run of de Casteljau’s algorithm. Using these points, you can then connect them together with lines. This is the first run of de Casteljau’s algorithm. If you repeat recursively until you only perform 1 lerp at the end, the you have evaluated the final point to draw the curve at that time t. Perform this for all t until the full curve is complete. 
+		For each pair control points and using parameter \(t\) (for time), perform linear interpolation (lerp) to create another point between them. 
+		If you do this with all pairs of points, if you have n points, then you should have n-1 points after the first run of de Casteljau’s algorithm. 
+		Using these points, you can then connect them together with lines. This is the first run of de Casteljau’s algorithm. If you repeat recursively 
+		until you only perform 1 lerp at the end, the you have evaluated the final point to draw the curve at that time \(t\). Perform this for all \(t\) until 
+		the full curve is complete. 
 		
 		<br /> <br />
 
@@ -143,14 +147,14 @@
 		<div style="display: flex; flex-direction: column; align-items: center;">
 			<table style="width: 100%; text-align: center; border-collapse: collapse;">
 				<tr>
-				<td style="text-align: center;">
-					<img src="./images/part3/3_teapot_flat.png" width="400px"/>
-					<figcaption><code>dae/teapot.dae</code> with flat shading.</figcaption>
-				</td>
-				<td style="text-align: center;">
-					<img src="./images/part3/3_teapot_phong.png" width="400px"/>
-					<figcaption><code>dae/teapot.dae</code> with Phong shading activated by pressing Q.</figcaption>
-				</td>
+					<td style="text-align: center;">
+						<img src="./images/part3/3_teapot_flat.png" width="400px"/>
+						<figcaption><code>dae/teapot.dae</code> with flat shading.</figcaption>
+					</td>
+					<td style="text-align: center;">
+						<img src="./images/part3/3_teapot_phong.png" width="400px"/>
+						<figcaption><code>dae/teapot.dae</code> with Phong shading activated by pressing Q.</figcaption>
+					</td>
 				</tr>
 			</table>
 		</div>
@@ -174,14 +178,14 @@
 		<div style="display: flex; flex-direction: column; align-items: center;">
 			<table style="width: 100%; text-align: center; border-collapse: collapse;">
 				<tr>
-				<td style="text-align: center;">
-					<img src="./images/part4/4_before_flip.png" width="400px"/>
-					<figcaption><code>dae/teapot.dae</code> before edge flips.</figcaption>
-				</td>
-				<td style="text-align: center;">
-					<img src="./images/part4/4_after_flip.png" width="400px"/>
-					<figcaption><code>dae/teapot.dae</code> after some edge flips.</figcaption>
-				</td>
+					<td style="text-align: center;">
+						<img src="./images/part4/4_before_flip.png" width="400px"/>
+						<figcaption><code>dae/teapot.dae</code> before edge flips.</figcaption>
+					</td>
+					<td style="text-align: center;">
+						<img src="./images/part4/4_after_flip.png" width="400px"/>
+						<figcaption><code>dae/teapot.dae</code> after some edge flips.</figcaption>
+					</td>
 				</tr>
 			</table>
 		</div>
@@ -202,18 +206,20 @@
 		<div style="display: flex; flex-direction: column; align-items: center;">
 			<table style="width: 100%; text-align: center; border-collapse: collapse;">
 				<tr>
-				<td style="text-align: center;">
-					<img src="./images/part5/5_before_split.png" width="400px"/>
-					<figcaption>Here is a mesh before any edge split operations.</figcaption>
-				</td>
-				<td style="text-align: center;">
-					<img src="./images/part5/5_after_split.png" width="400px"/>
-					<figcaption>Here is the same mesh after some edge split operations.</figcaption>
-				</td>
-				<td style="text-align: center;">
-					<img src="./images/part5/5_after_split_and_flip.png" width="400px"/>
-					<figcaption>This is the mesh after a combination of both edge splits and edge flips.</figcaption>
-				</td>
+					<td style="text-align: center;">
+						<img src="./images/part5/5_before_split.png" width="400px"/>
+						<figcaption>Here is a mesh before any edge split operations.</figcaption>
+					</td>
+					<td style="text-align: center;">
+						<img src="./images/part5/5_after_split.png" width="400px"/>
+						<figcaption>Here is the same mesh after some edge split operations.</figcaption>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">
+						<img src="./images/part5/5_after_split_and_flip.png" width="400px"/>
+						<figcaption>This is the mesh after a combination of both edge splits and edge flips.</figcaption>
+					</td>
 				</tr>
 			</table>
 		</div>
@@ -229,18 +235,21 @@
 		<div style="display: flex; flex-direction: column; align-items: center;">
 			<table style="width: 100%; text-align: center; border-collapse: collapse;">
 				<tr>
-				<td style="text-align: center;">
-					<img src="./images/part6/6_observation_1.png" width="400px"/>
-					<figcaption>Icosahedron before any loop subdivision operations.</figcaption>
-				</td>
-				<td style="text-align: center;">
-					<img src="./images/part6/6_observation_2.png" width="400px"/>
-					<figcaption>Icosahedron after 1 loop subdivision operation.</figcaption>
-				</td>
-				<td style="text-align: center;">
-					<img src="./images/part6/6_observation_3.png" width="400px"/>
-					<figcaption>Icosahedron after 2 loop subdivision operations.</figcaption>
-				</td>
+					<td style="text-align: center;">
+						<img src="./images/part6/6_observation_1.png" width="400px"/>
+						<figcaption>Icosahedron before any loop subdivision operations.</figcaption>
+					</td>
+					<td style="text-align: center;">
+						<img src="./images/part6/6_observation_2.png" width="400px"/>
+						<figcaption>Icosahedron after 1 loop subdivision operation.</figcaption>
+					</td>
+					
+					</tr>
+				<tr>
+					<td style="text-align: center;">
+						<img src="./images/part6/6_observation_3.png" width="400px"/>
+						<figcaption>Icosahedron after 2 loop subdivision operations.</figcaption>
+					</td>
 				</tr>
 			</table>
 		</div>
@@ -260,10 +269,13 @@
 					<img src="./images/part6/6_presplit_2.png" width="400px"/>
 					<figcaption>Icosahedron after 1 loop subdivision operation with pre-splitting applied.</figcaption>
 				</td>
-				<td style="text-align: center;">
-					<img src="./images/part6/6_presplit_3.png" width="400px"/>
-					<figcaption>Icosahedron after 2 loop subdivision operations with pre-splitting applied.</figcaption>
-				</td>
+				</tr>
+
+				<tr>
+					<td style="text-align: center;">
+						<img src="./images/part6/6_presplit_3.png" width="400px"/>
+						<figcaption>Icosahedron after 2 loop subdivision operations with pre-splitting applied.</figcaption>
+					</td>
 				</tr>
 			</table>
 		</div>
