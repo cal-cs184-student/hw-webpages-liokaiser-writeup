@@ -45,7 +45,7 @@
 		-->
 
 		<h2>Overview</h2>
-		Give a high-level overview of what you implemented in this homework. Think about what you've built as a whole. Share your thoughts on what interesting things you've learned from completing the homework.
+		In this assignment, we build a path tracer to accurately represent light in a 3d space. We use bounding volume hierarchy boxes to detect intersections of rays. We then sample lighting with different techniques such as uniform hemisphere sampling and importance sampling. We also implement global illumination to record bounces of light. And we implement adaptive sampling to efficiently reduce noise from our images.
 
 		<h2>Part 1: Ray Generation and Scene Intersection</h2>
 		Rays are generated through calling camera-&gt;generate_ray() in path tracer for each of the samples I wish to take. To check for intersection, I take the normalized x and y coordinates and convert them to vertical and horizontal fov relative to the camera. I then return a ray with a min and max length set and represented in the camera to world matrix space.
