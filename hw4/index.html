@@ -48,7 +48,7 @@
 		-->
 
 		<h2>Overview</h2>
-		Give a high-level overview of what you implemented in this homework. Think about what you've built as a whole. Share your thoughts on what interesting things you've learned from completing the homework.
+		<p>In this assignment, we implement real-time cloth simulation. In order to achieve this, we use a mass and spring based system to represent the physics behind the cloth movement. We apply physical restraints using verlet integration to compute forces on each point mass. We then handle self collisions and shaders using GLSL.</p>
 
 		<h2>Part 1: Masses and springs</h2>
 		Here we use a model that uses a system of point masses and springs to create our simulation.
@@ -255,7 +255,142 @@
 			</table>
 		</div>
 		<h2>Part 5: Shaders</h2>
-		<p></p>
+		<p>Shader programs are programs used to transform inputs into outputs. They don’t communicate with each other and the only way they can interact with each other is through their inputs and outputs. Shader programs are used to calculate the color, light levels, and shadows of a scene. The calculations are performed using the computer’s GPU and uses vectors and matrices to perform math in parallel.</p>
+		<p>Vertex shaders are able to modify the geometry of the scene and change the positioning of vertices in space. This can change the overall shape of whatever is being displayed on the scene. The fragment shader, which can also be referred to as a pixel shader, has the final say on what the color of each pixel is shown. </p>
+		<p>Blinn-Phong shading, unlike diffuse shading, has the ability to display specular highlights. It is able to combine ambient lighting, diffuse lighting, and specular lighting when added all together to produce a material that appears more shiny than just a diffuse material.</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="./images/part 5/phong/p5_phong_ambient.png" width="400px"/>
+				  <figcaption>Phong shader with only ambient lighting.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="./images/part 5/phong/p5_phong_diffuse.png" width="400px"/>
+				  <figcaption>Phong shading with only diffuse lighting.</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="./images/part 5/phong/p5_phong_specular.png" width="400px"/>
+				  <figcaption>Phong shading with only specular lighting.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="./images/part 5/phong/p5_phong_whole.png" width="400px"/>
+				  <figcaption>Phong shading with all components.</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+		<br />
+		<p>Here we made a shader to apply a texture onto our models.</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="./images/part 5/texture/p5_tex_1.png" width="400px"/>
+				  <figcaption>Custom texture applied on model.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="./images/part 5/texture/p5_tex_2.png" width="400px"/>
+				  <figcaption>Custom texture with cloth resting.</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+		<p>Here are our bump map and displacement mapping shaders</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="./images/part 5/bump/bump_noargs_1.png" width="400px"/>
+				  <figcaption>Bump map.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="./images/part 5/bump/bump_noargs_2.png" width="400px"/>
+				  <figcaption>Bump map at rest.</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="./images/part 5/displacement/displacement_noargs_1.png" width="400px"/>
+				  <figcaption>Displacement map.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="./images/part 5/displacement/displacement_noargs_2.png" width="400px"/>
+				  <figcaption>Displacement map at rest.</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+		<p>The bump maps show off the illusion of depth on the surface with the contrast between the light parts and the dark parts, but you can tell from looking at the edges that there are actually no changes to the surface.</p>
+		<p>The displacement map is very obvious in the change to the geometry. Changing perspective of the camera or changing the position of the cloth through simualtion makes the difference very apparent from the motion.</p>
+		<p>We also rendered these shaders with different levels of coarseness.</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="./images/part 5/bump/bump_16_1.png" width="400px"/>
+				  <figcaption>Bump map with coarseness level 16.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="./images/part 5/bump/bump_16_2.png" width="400px"/>
+				  <figcaption>Bump map with coarseness level 16 at rest.</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="./images/part 5/bump/bump_128_1.png" width="400px"/>
+				  <figcaption>Bump map with coarseness level 128.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="./images/part 5/bump/bump_128_2.png" width="400px"/>
+				  <figcaption>Bump map with coarseness level 128 at rest.</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="./images/part 5/displacement/displacement_16_1.png" width="400px"/>
+				  <figcaption>Displacement map with coarseness level 16.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="./images/part 5/displacement/displacement_16_2.png" width="400px"/>
+				  <figcaption>Displacement map with coarseness level 16 at rest.</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="./images/part 5/displacement/displacement_128_1.png" width="400px"/>
+				  <figcaption>Displacement map with coarseness level 128.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="./images/part 5/displacement/displacement_128_2.png" width="400px"/>
+				  <figcaption>Displacement map with coarseness level 128 at rest.</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+		<p>There was not obvious differences in the bump map with varying coarseness levels, but on the displacement mapping, the higher coarseness level made the model appear more "spikier"</p>
+		<p>We then made a mirror shader.</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="./images/part 5/mirror/mirror_1.png" width="400px"/>
+				  <figcaption>Mirror shading with cloth off the sphere.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="./images/part 5/mirror/mirror_2.png" width="400px"/>
+				  <figcaption>Mirror shading with cloth on the sphere.</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
 
 		</div>
 	</body>
