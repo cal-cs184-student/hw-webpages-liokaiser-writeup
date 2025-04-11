@@ -28,19 +28,19 @@
 	<body>
 		<div class="container">
 		<h1>CS184/284A Spring 2025 Homework 4 Write-Up</h1>
-		<div style="text-align: center;">Names: </div>
+		<div style="text-align: center;">Names: Patrick Lee, Eric Lin</div>
 
 		<br>
 
-		Link to webpage: (TODO) <a href="https://cs184.eecs.berkeley.edu/sp25">cs184.eecs.berkeley.edu/sp25</a>
+		Link to webpage: <a href="https://cal-cs184-student.github.io/hw-webpages-liokaiser-writeup/hw4/index.html">https://cal-cs184-student.github.io/hw-webpages-liokaiser-writeup/hw4/index.html</a>
 
 		<br>
 
-		Link to GitHub repository: (TODO) <a href="https://cs184.eecs.berkeley.edu/sp25">cs184.eecs.berkeley.edu/sp25</a>
+		Link to GitHub repository: <a href="https://github.com/cal-cs184-student/sp25-hw4-mcdonalds">https://github.com/cal-cs184-student/sp25-hw4-mcdonalds</a>
 
 		<figure>
 			<img src="clothsim.png" alt="Cloth draped over sphere" style="width:70%"/>
-			<figcaption>You can add images with captions!</figcaption>
+			<figcaption>Cloth!</figcaption>
 		</figure>
 
 		<!--
@@ -51,36 +51,77 @@
 		Give a high-level overview of what you implemented in this homework. Think about what you've built as a whole. Share your thoughts on what interesting things you've learned from completing the homework.
 
 		<h2>Part 1: Masses and springs</h2>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		Here we use a model that uses a system of point masses and springs to create our simulation.
 
-		<p>Here is an example 2x2 gridlike structure using an HTML table. Each <b>tr</b> is a row and each <b>td</b> is a column in that row. You might find this useful for framing and showing your result images in an organized fashion.</p>
+		<p>Here are a few views of pinned2.json</p>
 		<div style="display: flex; flex-direction: column; align-items: center;">
 			<table style="width: 100%; text-align: center; border-collapse: collapse;">
 			  <tr>
 				<td style="text-align: center;">
-				  <img src="clothsim.png" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
+				  <img src="./images/part 1/p1_pinned2.png" width="400px"/>
+				  <figcaption>pinned2.json.</figcaption>
 				</td>
 				<td style="text-align: center;">
-				  <img src="clothsim.png" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
+				  <img src="./images/part 1/p1_pinned2_2.png" width="400px"/>
+				  <figcaption>pinned2.json.</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+
+		<p>These are what the wireframe looks like: (1) without any shearing constraints, (2) with only shearing constraints, and (3) with all constraints.</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="./images/part 1/No Shearing.png" width="400px"/>
+				  <figcaption>(1) without any shearing constraints.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="./images/part 1/Only Shearing.png" width="400px"/>
+				  <figcaption>(2) with only shearing constraints.</figcaption>
 				</td>
 			  </tr>
 			  <tr>
 				<td style="text-align: center;">
-				  <img src="clothsim.png" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
-				</td>
-				<td style="text-align: center;">
-				  <img src="clothsim.png" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
+				  <img src="./images/part 1/Full Mesh.png" width="400px"/>
+				  <figcaption>(3) with all constraints.</figcaption>
 				</td>
 			  </tr>
 			</table>
 		</div>
 
 		<h2>Part 2: Simulation via numerical integration</h2>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		<p>With a very low ks, there is no “bounce” to the cloth at all. This is likely due to the spring_length constraint that prevents the cloth from stretching beyond 10% of its resting length. The cloth settles very quickly into its resting position. In contrast, with a very high ks, it can be difficult for the cloth to go to rest if it does at all. The cloth vibrates very intensely due to the large forces created by the spring forces.</p>
+
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="images/part 2/Low Density.png" width="400px"/>
+				  <figcaption>Low density cloth.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="images/part 2/High Density.png" width="400px"/>
+				  <figcaption>High density cloth.</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="images/part 2/High ks.png" width="400px"/>
+				  <figcaption>High ks cloth.</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+
+		<p>Changing density affects the role spring forces and gravity plays on the cloth. With a low density, gravitational forces are close to 0 and so the cloth barely sags at all in the final resting position. As a result, the cloth almost looks like a vertical rectangle in this case. With a much higher density, the cloth sag is more prominent due to the additional gravitational force, though this sag is still limited likely by the max spring length constraint.</p>
+
+		<p>Damping affects how the cloth “falls” from its initial starting state. With a high damping, it takes much longer for the cloth to fall as if the cloth was being slowed from falling by a big blanket of air. With a low damping, the cloth tends to swing back and forth more before finally settling down into its resting state.</p>
+		<figure>
+			<img src="./images/part 2/DefaultHangingCloth.png" alt="hanging cloth" style="width:50%"/>
+			<figcaption>Hanging cloth in pinned4.json.</figcaption>
+		</figure>
 
 		<h2>Part 3: Handling collisions with other objects</h2>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -91,19 +132,6 @@
 		<h2>Part 5: Shaders</h2>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-		<h2>(Optional) Part 6: Extra Credit - Additional cloth simulation features!</h2>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		
-		<h2>Additional Notes (please remove)</h2>
-		<ul>
-			<li>You can also add code if you'd like as so: <code>code code code</code></li>
-			<li>If you'd like to add math equations, 
-				<ul>
-					<li>You can write inline equations like so: \( a^2 + b^2 = c^2 \)</li>
-					<li>You can write display equations like so: \[ a^2 + b^2 = c^2 \]</li>
-				</ul>
-			</li>
-		</ul>
 		</div>
 	</body>
 </html>
