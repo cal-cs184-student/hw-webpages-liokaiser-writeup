@@ -124,13 +124,138 @@
 		</figure>
 
 		<h2>Part 3: Handling collisions with other objects</h2>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		<p>To check for sphere collision, I first calculate the distance of a point on the cloth and the center of the sphere. If this distance is less than the radius of the sphere, I apply a correction to put the point on the surface where it would have “stopped falling.”</p>
+		<p>As the spring coefficient increases from 500 to 5000 to 50000, the cloth maintains more of its rectangular shape and is thus less “draped” around the sphere as compared to its lower ks counterparts.</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="images/part 3/Default sphere.png" width="400px"/>
+				  <figcaption>Default sphere.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="images/part 3/Low ks sphere.png" width="400px"/>
+				  <figcaption>Low ks sphere.</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="images/part 3/High ks sphere.png" width="400px"/>
+				  <figcaption>High ks sphere.</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+		<p>To check for plane collision, I first take the last_position of a point and the new position where the point wants to go. I subtract the given point on the plane from those two positions and calculate the dot product of those differences with the given normal vector of the plane. If these two dot products don’t share the same sign, that means that the two positions are on different sides of the plane from one time frame to the next and so there must be a collision. I apply a correction to make sure that where the new position would cross the plane, the pointmass will not cross that point.</p>
+		<figure>
+			<img src="./images/part 3/cloth on plane.png" alt="hanging cloth" style="width:50%"/>
+			<figcaption>Cloth resting on plane.</figcaption>
+		</figure>
 
 		<h2>Part 4: Handling self-collisions</h2>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		<p>To handle self collisions, we rely on three functions: build_spatial_map, self_collide, and hash_position.
 
+			hash_position takes in a position vector and we compute a unique hash number. We created this hash number using 3D partitions of space using the width, height, and thickness of the cloth and arbitrary numbers to multiply with them to make a unique number.
+			
+			build_spatial_map is used to create a map pairing the hash values of the point masses of the cloth with a vector of point masses near to each other.
+
+			self_collide takes in a point mass and compares its distance between other points close to it and determines whether or not they are within 2 * thickness units of each other. If so, a correction vector is applied to the point mass to pull it away from the point it may collide with.
+		</p>
+
+		<p>Here are the stages of a cloth falling on itself.</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="./images/part 4/p4_coll_1.png" width="400px"/>
+				  <figcaption>Cloth collision 1.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="./images/part 4/p4_coll_2.png" width="400px"/>
+				  <figcaption>Cloth collision 2.</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="./images/part 4/p4_coll_3.png" width="400px"/>
+				  <figcaption>Cloth collision 3.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="./images/part 4/p4_coll_4.png" width="400px"/>
+				  <figcaption>Cloth collision 4.</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="./images/part 4/p4_coll_5.png" width="400px"/>
+				  <figcaption>Cloth collision 5.</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+
+		<p>When we lower the density slider, the cloth becomes more stiff as it attempts to fold on itself. Any curve formed when it folds is very wide in nature as if it is hard to bend on itself. As we increase the density slider, the cloth feels more fluid-like. The folds feel more granular allowing smaller folds on itself and it makes the cloth look much more flexible than usual.</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="./images/part 4/density/zero_four/p4_0_4_density1.png" width="400px"/>
+				  <figcaption>Cloth with density set at 0.4.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="./images/part 4/density/zero_four/p4_0_4_density2.png" width="400px"/>
+				  <figcaption>Cloth with density set at 0.4.</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="./images/part 4/density/thirty/p4_30_density_1.png" width="400px"/>
+				  <figcaption>Cloth with density set at 30.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="./images/part 4/density/thirty/p4_30_density_2.png" width="400px"/>
+				  <figcaption>Cloth with density set at 30.</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="./images/part 4/density/thirty/p4_30_density_3.png" width="400px"/>
+				  <figcaption>Cloth with density set at 30.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="./images/part 4/density/thirty/p4_30_density_4.png" width="400px"/>
+				  <figcaption>Cloth with density set at 30.</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
+		<p>Upon playing with the ks slider, we noticed that as we increased the slider, the cloth becomes a lot more bouncy, especially when it tries to go into a rest state. As the correction vectors are applied from self_collide, the vector position changes are very noticeable making the cloth move much more than usual.</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="./images/part 4/ks/p4_12000_ks_1.png" width="400px"/>
+				  <figcaption>Cloth with ks set at 12000.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="./images/part 4/ks/p4_12000_ks_2.png" width="400px"/>
+				  <figcaption>Cloth with ks set at 12000.</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="./images/part 4/ks/p4_12000_ks_3.png" width="400px"/>
+				  <figcaption>Cloth with ks set at 12000.</figcaption>
+				</td>
+				<td style="text-align: center;">
+				  <img src="./images/part 4/ks/p4_12000_ks_4.png" width="400px"/>
+				  <figcaption>Cloth with ks set at 12000.</figcaption>
+				</td>
+			  </tr>
+			</table>
+		</div>
 		<h2>Part 5: Shaders</h2>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		<p></p>
 
 		</div>
 	</body>
